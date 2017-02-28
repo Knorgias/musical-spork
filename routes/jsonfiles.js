@@ -7,16 +7,8 @@ const fs = require('fs')
 //Generate a router object from the express library
 const router = express.Router()
 
-//Promise to read a JSON file
-const readJSONFile = target => {
-	return new Promise( ( resolve, reject ) => {
-		fs.readFile( target,'utf-8', (err, data) => {
-			if ( err ) return reject ( err )
-			//The resolve will send data to the .then() called after the execution of readJSONFile
-			resolve( JSON.parse(data) )
-		} )
-	} )
-}
+//Import the readJSONFile custom module
+const readJSONFile = require( __dirname + '/../custom-modules/readJSONFile')
 
 //A router for the 1st JSON file
 router.get('/file1', (req, res) => {

@@ -7,16 +7,11 @@ const fs = require('fs')
 //Generate a router object from the express library
 const router = express.Router()
 
-//Promise to read a txt file
-const readTxtFile = target => {
-	return new Promise( ( resolve, reject ) => {
-		fs.readFile( target,'utf-8', (err, data) => {
-			if ( err ) return reject ( err )
-			//The resolve will send data to the .then() called after the execution of readJSONFile
-			resolve( data )
-		} )
-	} )
-}
+//Import the readTxtFile custom module
+const readTxtFile = require( __dirname + '/../custom-modules/readTxtFile')
+
+//Import the lineReader custom module
+const lineReader = require(__dirname + '/../custom-modules/lineReader')
 
 //A router for the 1st txt file
 router.get('/file1', (req, res) => {
